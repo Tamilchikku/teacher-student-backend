@@ -62,6 +62,13 @@ const getArticles = async (req, res) => {
 // @access  Private
 const getArticle = async (req, res) => {
   try {
+    const mongoose = require('mongoose');
+    
+    // Validate ObjectId format
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid article ID format' });
+    }
+
     const article = await Article.findById(req.params.id)
       .populate('createdBy', 'name email');
 
@@ -71,6 +78,7 @@ const getArticle = async (req, res) => {
 
     res.json(article);
   } catch (error) {
+    console.error('Error fetching article:', error);
     res.status(500).json({ message: error.message });
   }
 };

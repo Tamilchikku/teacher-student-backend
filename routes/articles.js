@@ -13,13 +13,15 @@ const router = express.Router();
 
 router.use(protect);
 
+// Specific routes MUST come before parameterized routes
+router.route('/teacher/my-articles')
+  .get(authorize('teacher'), getMyArticles);
+
 router.route('/')
   .post(authorize('teacher'), createArticle)
   .get(getArticles);
 
-router.route('/teacher/my-articles')
-  .get(authorize('teacher'), getMyArticles);
-
+// Parameterized routes come last
 router.route('/:id')
   .get(getArticle)
   .put(authorize('teacher'), updateArticle)
