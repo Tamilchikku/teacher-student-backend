@@ -1,0 +1,44 @@
+.analytics-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.teacher-analytics,
+.student-analytics {
+  margin-top: 32px;
+}
+
+.article-selector {
+  max-width: 400px;
+  margin-bottom: 24px;
+}
+
+.article-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .article-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .article-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
